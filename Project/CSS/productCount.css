@@ -1,0 +1,46 @@
+
+.product_count {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 24px
+}
+
+.product_count label {
+    font-size: 14px;
+    color: #797979;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    padding-right: 10px
+}
+
+.product_count input {
+    width: 76px;
+    border: 1px solid #eeeeee;
+    border-radius: 3px;
+    padding-left: 10px
+}
+
+.product_count button {
+    display: block;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    font-size: 14px;
+    color: #cccccc;
+    transition: all 300ms linear 0s
+}
+
+.product_count button:hover {
+    color: #2a2a2a
+}
+
+.product_count .increase {
+    top: -4px
+}
+
+.product_count .reduced {
+    bottom: -1px
+}

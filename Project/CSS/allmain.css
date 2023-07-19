@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Heebo:300,400,500,700|Roboto:300,400,500");
+
+body {
+    line-height: 24px;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    color: #797979
+}
+
+.main_btn {
+    display: inline-block;
+    background: #71cd14;
+    padding: 0px 32px;
+    letter-spacing: 0.25px;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 44px;
+    outline: none !important;
+    box-shadow: none !important;
+    text-align: center;
+    border: 1px solid #71cd14;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 300ms linear 0s;
+    border-radius: 5px
+}
+
+.main_btn:hover {
+    background: transparent;
+    color: #71cd14
+}
+
+del {
+    color: #797979;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: "Heebo", sans-serif
+}
+
+.list {
+    list-style: none;
+    margin: 0px;
+    padding: 0px
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease-in-out
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: none
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}

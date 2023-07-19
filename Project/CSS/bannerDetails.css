@@ -1,0 +1,40 @@
+.banner_area .banner_inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 200px;
+    background: #f6f6f6;
+    z-index: 1
+}
+
+.banner_area .banner_inner .banner_content h2 {
+    font-size: 27px;
+    font-weight: 500
+}
+
+
+.banner_area .banner_inner .banner_content .page_link a {
+    font-size: 14px;
+    font-weight: 300;
+    color: #797979;
+    font-family: "Roboto", sans-serif;
+    margin-right: 18px;
+    position: relative
+}
+
+.banner_area .banner_inner .banner_content .page_link a:before {
+    content: "/";
+    font-size: 14px;
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.banner_area .banner_inner .banner_content .page_link a:last-child:before {
+    display: none
+}
+
+.banner_area .banner_inner .banner_content .page_link a:hover {
+    color: #71cd14
+}

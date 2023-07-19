@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="../CSS/font-awesome/font-awesome.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="../CSS/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <script src="../CSS/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+  
+    <link rel="stylesheet" href="../CSS/allmain.css">
+    <link rel="stylesheet" href="../CSS/normalize.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/singleProduct.css">
+</head>
+
+<body>
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+
+                <a class="navbar-brand logo_h" href="index.html">
+                    <img src="../MEDIA/logo.png" alt="" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
+                    <div class="row w-100 mr-0">
+                        <div class="col-md-10">
+                            <div class="d-flex form-inputs">
+                                <form class="d-flex m-auto" action="search.html" method="get">
+                                    <input class="form-control me-2" style="align-self: center ;" type="search"
+                                        placeholder="Search" aria-label="Search" required name="searchProduct" value=""
+                                        id="inputSearch">
+                                    <button class="btn" type="submit">
+                                        <i style=" font-size: large;" class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 pr-0">
+                    <ul class="nav navbar-nav navbar-right right_nav pull-right">
+
+                        <li class="nav-item">
+                            <a href="cart.html" class="icons">
+                                <i style="position: relative; font-size: x-large;" class="fa fa-shopping-cart ">
+                                    <span style="position: absolute; font-size: small  ; top: -15%; left: 0% ;"
+                                        class=" translate-middle badge rounded-pill bg-danger">
+                                        2
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </i>
+                            </a>
+                        </li>
+
+
+
+                        <li class="nav-item">
+                            <a href="favorites.html" class="icons">
+                                <i style="position: relative; font-size: x-large;" class="fa fa-heart ">
+                                    <span
+                                        style="position: absolute; font-size: x-small; text-align: center; top: -15%; left: 0% ;"
+                                        class=" translate-middle badge rounded-pill bg-danger">
+                                        3
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="settings.html" class="icons">
+                                <i style="position: relative; font-size: x-large;" class="fa fa-user"
+                                    aria-hidden="true"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <div id="not-found" class="h1 m-auto" style="text-align: center; transform: translateY(500%); visibility:hidden;">Not Found</div>
+    <!--================Header Menu Area =================-->
+
+    <div class="container">
+        <div class="row" id="allProductRow">
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const greetingValue = urlParams.get('searchProduct');
+
+        async function fetchMovies(lang) {
+      var url;
+    
+    var arabic = /[\u0600-\u06FF]/;
+    if(arabic.test(greetingValue)){  url = "http://localhost:3005/data-ar";}
+      
+      else url = "http://localhost:3005/data-en"
+      const response = await fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          searchProducs(data.products);
+  
+        });
+    }
+
+  function  searchProducs(products){
+  var searchedProd=[];
+   for (const product of products) {
+    
+     if(product.name.includes(greetingValue) || product.description.includes(greetingValue))
+     searchedProd.push(product)
+   }
+
+   if(searchedProd.length >0){
+drawProducts(searchedProd)
+   }
+   else{
+    document.getElementById("not-found").style.visibility = "visible"
+   }
+  }
+
+  fetchMovies("en")
+        function drawProducts(products, offers) {
+      for (var product of products) {
+        var images = document.createElement("img");
+        images.classList.add("rounded", "w-100");
+        images.src = product.image;
+        images.height = "350"
+
+        var productImg = document.createElement("div");
+        productImg.classList.add("product-img");
+        productImg.appendChild(images);
+
+        var pIcon = document.createElement("div");
+        pIcon.classList.add("p_icon");
+        var link2 = document.createElement("a");
+        link2.setAttribute("id", `${product.id}`);
+        link2.setAttribute("onclick", "changeFavorites(this)");
+        var tiHeart = document.createElement("i");
+        tiHeart.classList.add("fa", "fa-solid", "fa-heart")
+        var link3 = document.createElement("a");
+        link3.setAttribute("id", `${product.id}`);
+        link3.setAttribute("onclick", "changeFavorites(this)");
+
+        var tiShoppingCart = document.createElement("i");
+        tiShoppingCart.classList.add("fa", "fa-shopping-cart");
+
+        link2.appendChild(tiHeart);
+        link3.appendChild(tiShoppingCart);
+
+        pIcon.appendChild(link2);
+        pIcon.appendChild(link3);
+        productImg.appendChild(pIcon);
+
+        var productBtm = document.createElement("div");
+        productBtm.classList.add("product-btm");
+        var nameLink = document.createElement("a");
+        nameLink.href = `productdetail.html?productId=${product.id}`
+        nameLink.classList.add("d-block");
+        var name = document.createElement("h4");
+        name.innerText = product.name;
+        nameLink.appendChild(name);
+        productBtm.appendChild(nameLink);
+
+        var priceDive = document.createElement("div");
+        priceDive.className = "mt-3";
+        var newPrice = document.createElement("span");
+        newPrice.innerText = product.price;
+        newPrice.className = "mr-4";
+        priceDive.appendChild(newPrice);
+
+        var x = document.createElement("div");
+        x.classList.add("col-lg-4", "col-md-6");
+
+        if (product.discount > 0) {
+          var oldPrice = document.createElement("del")
+          oldPrice.innerText = product.old_price;
+          priceDive.appendChild(oldPrice);
+          var discountElment = document.createElement("span");
+          discountElment.classList.add("translate-middle", "badge", "bg-danger", "discountElment");
+          discountElment.innerText = "Discount";
+
+          x.style = "position:relative";
+          x.appendChild(discountElment)
+        }
+
+        productBtm.appendChild(priceDive);
+
+
+
+        var singleProduct = document.createElement("div");
+        singleProduct.classList.add("single-product");
+        singleProduct.setAttribute("id", `${product.id}`);
+
+        singleProduct.appendChild(productImg);
+        singleProduct.appendChild(productBtm);
+
+        x.appendChild(singleProduct);
+        
+          var row = document.getElementById("allProductRow");
+          row.appendChild(x);
+    
+
+
+      }
+
+    }
+
+
+        document.getElementById("inputSearch").value = greetingValue
+        
+    </script>
+</body>
+
+</html>

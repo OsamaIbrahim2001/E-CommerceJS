@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/newProduct.css">
+  <title>Create New Product</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Create New Product</h1>
+    <form id="product-form">
+      <label for="category">Category:</label>
+      <select id="category" name="category">
+
+      </select>
+      <br><br>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <br><br>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" rows="4" cols="50" required></textarea>      
+      <br><br>
+      <label for="price">Price:</label>
+      <input class="positive" type="number" id="price" min="0" name="price" required>
+      <br><br>
+      <label for="old-price">Old Price:</label>
+      <input class="positive" onblur="discountfn(this)" min="0" type="number" id="old-price" name="old-price" >
+      <br><br>
+      <label for="discount">Discount %:</label>
+      <input disabled type="text" id="discount" name="discount" value="" >
+      <br><br><br>
+    <div style="display: block;">
+      <div style="">
+      <div><label for="fileSelector">Main Image:</label>
+      </div>
+      <input  type="file" id="fileSelector" name="images[]" accept="image/*"  >
+      <!-- <img style=""  id="selectedImage" height="60" width="60"> -->
+      </div>
+    </div>
+    <br><br><br>
+    <div style="">
+      <label for="mlfileSelector">Other Images:</label>
+      <input type="file" id="mlfileSelector" name="images[]" accept="image/*" multiple>
+      <!-- <img  id="mlselectedImage" height="60" width="60">
+      <img  id="mlselectedImage" height="60" width="60">
+      <img  id="mlselectedImage" height="60" width="60"> -->
+    </div>
+      <button type="submit">Create Product</button>
+    </form>
+  </div>
+  <script src="../JS/newproduct.js"></script>
+</body>
+<script>
+  var opr =parseFloat(document.getElementById("old-price").value) 
+  var pr =parseFloat( document.getElementById("price").value)
+  function discountfn() {
+  var aa =document.getElementById("discount")
+  // aa.setAttribute("value",`${parseFloat(pr)/parseFloat(opr)}`) 
+  aa.value=(parseFloat( document.getElementById("price").value))/(parseFloat(document.getElementById("old-price").value))*100
+  console.log( parseFloat(document.getElementById("old-price").value) )
+  console.log(parseFloat( document.getElementById("price").value))
+}
+// ------------------------------discount----------------
+
+
+ const fileSelector = document.getElementById("fileSelector");
+// const selectedImage = document.getElementById("selectedImage");
+
+
+fileSelector.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  
+  const reader = new FileReader();
+  reader.onload = () => {
+    var selectedImage = document.createElement("img");
+    selectedImage.height="60"
+    selectedImage.width="60"
+    
+    selectedImage.src = reader.result;
+    fileSelector.parentNode.insertBefore(selectedImage, fileSelector.nextSibling);
+  };
+  reader.readAsDataURL(file);
+});
+// ----------------------------
+const mfileSelector = document.getElementById("mlfileSelector");
+mfileSelector.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  
+  const reader = new FileReader();
+  reader.onload = () => {
+    var selectedImage = document.createElement("img");
+    selectedImage.height="60"
+    selectedImage.width="60"
+    
+    selectedImage.src = reader.result;
+    mfileSelector.parentNode.insertBefore(selectedImage, mfileSelector.nextSibling);
+  };
+  reader.readAsDataURL(file);
+});
+// ---------------class="positive"------------------------------
+
+</script>
+</html>

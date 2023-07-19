@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../CSS/styleLogin.css">
+</head>
+
+<body>
+    <button onclick="document.getElementById('regis').style.display='block'" style="width:auto;">regiser</button>
+    <button onclick="document.getElementById('log').style.display='block'" style="width:auto;">Login</button>
+
+    <div id="regis" class="modal">
+
+        <form class="modal-content animate">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('regis').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+            </div>
+            <div class="container">
+
+                <fieldset>
+                    <legend> Registeration</legend>
+                    <br>
+
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" name="uname" placeholder="Enter your UserName" value="" required id="username">
+
+                    <img src="" alt="" srcset="" style="width:30px">
+                    <label name="inval"></label><br>
+
+                    <label for="fname"><b>First Name</b></label>
+                    <input type="text" name="fname" placeholder="Enter your First Name" value=""
+                         required id="fname">
+                    <label name="invalfirst"></label><br>
+
+                    &nbsp;<label for="lname"><b>Last Name</b></label>
+                    <input type="text" name="lname" placeholder="Enter your Last Name" value="" 
+                         required id="lname">
+                    <label name="invallst"></label>
+
+                    <br>
+                 
+
+                    <!-- <br> -->
+
+                    <br>
+                    <label for="pass1"> <b>Password</b> </label>
+                    <input type="password" minlength="8" name="pass1"
+                        placeholder="Enter Password" required id="password">
+
+                    <br>
+                    <br>
+                    <label for="pass2"> <b>Repeated Password</b> </label>
+                    <input type="password" name="pass2" 
+                        placeholder="Enter Repeated Password">
+
+                    <img src="" alt="" srcset="" style="width:30px">
+                    <label name="notidi"></label>
+                    <!-- <br> -->
+
+                    <br>
+                    <label for="em"> <b> Email <b></label>
+                    <input type="email" required name="em" 
+                        placeholder="Enter Email" id="email">
+
+                    <br>
+                    <br>
+                    <label for="phone"> <b> Phone Number <b></label>
+                    <input type="text" minlength="11" maxlength="11" required name="phone" 
+                       placeholder="Enter Phone Number" id="phone">
+
+
+                    <br>
+                    <label for="birth">BirthDate</label>
+                    <input type="date" class="form-control" id="bdate" placeholder="Enter your Birth Day"
+                        style="width: 40%; height: 30px;">
+
+                    <br>
+                    <br>
+                    <label for=""><b> Cites <b></label>
+                    <select name="Cites" id="city" style="width: 40%;height: 30px;">
+                        <option value="Minia">Minia</option>
+                        <option value="Assuit">Assuit</option>
+                        <option value="Alex">Alex</option>
+                        <option value="Cairo">Cairo</option>
+                        <option value="Fayom">Fayom</option>
+                    </select>
+                    <br>
+                    <br>
+
+                    <input id="term" type="checkbox" required>
+                    <label for="term">
+                        <a onclick="opens()">I agreed to terms and condition</a>
+                    </label>
+                    <br>
+                    <button type="button" onclick="submiteUser(this)" id="register-user">Register</button>
+                    <button type="reset" style="  display: inline-block; background-color: #a9a9a9d1;">Reset
+                        Changes</button>
+
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('regis').style.display='none'"
+                    class="cancelbtn">Cancel</button>
+                <span
+                    onclick="document.getElementById('log').style.display='block',document.getElementById('regis').style.display='none'"
+                    class="havaacc"> <a href="#" style="float: right; font-size: 15px;
+                    color: #a9a9a9d1;">Do you have account? <span style="font-size: 15px; color: #04AA6D">Login</span></a></span>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="log" class="modal">
+
+
+        <form class="modal-content animate" style="width: 60%;">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('log').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+            </div>
+            <div class="container">
+                <fieldset>
+                    <legend> Login</legend>
+                    <br>
+                    <label for="fname"><b>Username</b></label>
+                    <input type="text" name="fname" placeholder="Enter your name" value="" 
+                         required id="usernameLog">
+                    <img src="" alt="" srcset="" style="width:30px">
+                    <label name="inval"></label>
+                    <label for="pass1"> <b>Password</b> </label>
+                    <input type="password" minlength="2" name="pass1" 
+                        placeholder="Enter Password" required id="passwordLog">
+                    <img src="" alt="" srcset="" style="width:30px">
+                    <label name="notidi"></label>
+                    <br>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                    <br>
+                    <button type="button" onclick="submiteUser(this)" style="position: relative; left: 25%;" id="login-user">Login</button>
+
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('log').style.display='none'"
+                    class="cancelbtn">Cancel</button>
+                <span
+                    onclick="document.getElementById('regis').style.display='block',document.getElementById('log').style.display='none'"
+                    class="firsttime">
+                    <a href="#" style="padding-left: 15px; font-size: 15px; color: #a9a9a9d1;">You don't have an
+                        account? <span style="font-size: 16px; color: #04AA6D">Register</span></a></span>
+                <span class="psw"><a href="#">Forgot password?</a></span>
+
+            </div>
+        </form>
+    </div>
+
+
+    <script src="../JS/LoginScript.js"></script>
+</body>
+
+</html>

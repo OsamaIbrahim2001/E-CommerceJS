@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../CSS/font-awesome/font-awesome.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../CSS/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <script src="../CSS/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../CSS/allmain.css">
+  <link rel="stylesheet" href="../CSS/normalize.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/singleProduct.css">
+</head>
+
+<body>
+  <!--================Header Menu Area =================-->
+  <header class="header_area">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+
+        <a class="navbar-brand logo_h" href="index.html">
+          <img src="../MEDIA/2.jpg" alt="" height="80"/>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
+          <div class="row w-100 mr-0">
+            <div class="col-md-10">
+              <div class="d-flex form-inputs">
+                <form class="d-flex m-auto" action="search.html" method="get">
+                  <input class="form-control me-2" style="align-self: center ;" type="search" placeholder="Search"
+                    aria-label="Search" required name="searchProduct" value="">
+                  <button class="btn" type="submit">
+                    <i style=" font-size: large;" class="fa fa-search" aria-hidden="true"></i>
+                  </button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5 pr-0">
+          <ul class="nav navbar-nav navbar-right right_nav pull-right">
+
+            <li class="nav-item">
+              <a class="icons" onclick="var user=localStorage.getItem('user'); if(user!=null){window.open('newProduct.html','_blank')}else{window.open('tgroba.html')}">
+                <i style="position: relative; font-size: x-large;" class="fa fa-plus" id="newProduct">
+                </i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="icons"onclick="var user=localStorage.getItem('user'); if(user!=null){window.open('cart.html','_blank')}else{window.open('tgroba.html')}">
+                <i style="position: relative; font-size: x-large;" class="fa fa-shopping-cart" id="cartIcon">
+                </i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a onclick="var user=localStorage.getItem('user'); if(user!=null){window.open('favorites.html','_blank')}else{window.open('tgroba.html')}" class="icons">
+                <i style="position: relative; font-size: x-large;" class="fa fa-heart" id="favIcon">
+                </i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a onclick="var user=localStorage.getItem('user'); if(user!=null){window.open('settings.html','_blank')}else{window.open('tgroba.html')}" class="icons">
+                <i style="position: relative; font-size: x-large;" class="fa fa-user" aria-hidden="true"></i>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      </div>
+      </div>
+    </nav>
+
+  </header>
+  <!--================Header Menu Area =================-->
+
+
+  <div id="carouselExampleDark" class="carousel carousel-dark slide mb-5" data-bs-ride="carousel">
+  </div>
+
+  <div class="container">
+    <div class="d-flex justify-content-start mb-1">
+      <div class="h1" style="font-weight: 900;">Categories</div>
+    </div>
+
+    <div class="d-flex justify-content-start ms-5" id="cat">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="d-flex justify-content-start mb-1 mt-5">
+      <div class="h1" style="font-weight: 900;">All Products</div>
+    </div>
+    <div class="row" id="allProductRow">
+    </div>
+
+  </div>
+  <script>
+    async function fetchProducts() {
+  var allproducts = [];
+  var url = "http://localhost:3005/data-en";
+  const response = await fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      slideBanner(data.banners);
+      console.log(data.products)
+      drawProducts(data.products, false, false);
+    });
+}
+fetchProducts();
+  </script>
+<script src="../JS/category.js"></script>
+<script src="../JS/notifications.js"></script>
+<script src="../JS/slideBanners.js"></script>
+  <script src="../JS/drawProducts.js"></script>
+<script src="../JS/changeFavorites.js"></script>
+<script src="../JS/drawCategory.js"></script>
+</body>
+
+</html>
